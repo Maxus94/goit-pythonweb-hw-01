@@ -22,6 +22,13 @@ class Library(LibraryInterface):
 
     def add_book(self, book: Book):
         self.books.append(book)
+
+    def remove_book(self, title):
+        for book in self.books:
+            if book.title == title:
+                self.books.remove(book)
+                break    
+
     
 class LibraryManager:
     
@@ -31,11 +38,11 @@ class LibraryManager:
     def add_book(self, title, author, year):
         self.library.add_book(Book(title, author, year))
 
+    def show_books(self):
+        self.library.show_books()
+
     def remove_book(self, title):
-        for book in self.books:
-            if book.title == title:
-                self.books.remove(book)
-                break    
+        self.library.remove_book(title)
 
 
 
@@ -64,31 +71,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-# def main():
-#     library = Library()
-    
-#     while True:
-#         command = input("Enter command (add, remove, show, exit): ").strip().lower()
-        
-#         if command == "add":
-#             title = input("Enter book title: ").strip()
-#             author = input("Enter book author: ").strip()
-#             year = input("Enter book year: ").strip()
-#             book = Book(title, author, year)
-#             library.add_book(book)
-#         elif command == "remove":
-#             title = input("Enter book title to remove: ").strip()
-#             library.remove_book(title)
-#         elif command == "show":
-#             library.show_books()
-#         elif command == "exit":
-#             break
-#         else:
-#             print("Invalid command. Please try again.")
-
-# if __name__ == "__main__":
-#     main()
-
-

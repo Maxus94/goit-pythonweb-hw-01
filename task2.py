@@ -4,27 +4,26 @@ from abc import ABC, abstractmethod
 
 
 logging.basicConfig(
-    format='%(message)s',
-    level=logging.DEBUG,
-        handlers=[        
-        logging.StreamHandler()
-    ])
+    format="%(message)s", level=logging.DEBUG, handlers=[logging.StreamHandler()]
+)
+
 
 class Book:
     def __init__(self, title: str, author: str, year: int):
         self.title = title
         self.author = author
         self.year = year
-    
+
     def __str__(self) -> str:
         return f"Title: {self.title}, Author: {self.author}, Year: {self.year}"
 
 
 class LibraryInterface(ABC):
-    
+
     def show_books(self) -> None:
-        for book in self.books:            
-            logging.info(book)            
+        for book in self.books:
+            logging.info(book)
+
 
 class Library(LibraryInterface):
     def __init__(self):
@@ -37,11 +36,11 @@ class Library(LibraryInterface):
         for book in self.books:
             if book.title == title:
                 self.books.remove(book)
-                break    
+                break
 
-    
+
 class LibraryManager:
-    
+
     def __init__(self, library: Library):
         self.library = library
 
@@ -53,7 +52,6 @@ class LibraryManager:
 
     def remove_book(self, title: str) -> None:
         self.library.remove_book(title)
-
 
 
 def main():
@@ -76,8 +74,9 @@ def main():
                 manager.show_books()
             case "exit":
                 break
-            case _:                
+            case _:
                 logging.error("Invalid command. Please try again.")
+
 
 if __name__ == "__main__":
     main()
